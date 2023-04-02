@@ -9,7 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApiResponse {
-    private String message;
-    private Boolean isSuccess;
+public class CategoryDto {  
+    private int categoryId;
+    private String categoryName;
+    private String CategoryDescription;
 }
