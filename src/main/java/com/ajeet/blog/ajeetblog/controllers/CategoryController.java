@@ -18,6 +18,8 @@ import com.ajeet.blog.ajeetblog.payloads.ApiResponse;
 import com.ajeet.blog.ajeetblog.payloads.CategoryDto;
 import com.ajeet.blog.ajeetblog.services.CategoryService;
 
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/api/categories")
@@ -27,13 +29,13 @@ public class CategoryController {
     private CategoryService cateService;
 
     @PostMapping("/")
-    public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto){
+    public ResponseEntity<CategoryDto> createCategory(@Valid @RequestBody CategoryDto categoryDto){
         CategoryDto createdCatDto = this.cateService.createCat(categoryDto);
         return new ResponseEntity<CategoryDto>(createdCatDto, HttpStatus.CREATED);
     }
 
     @PutMapping("/{cateId}")
-    public ResponseEntity<CategoryDto> updateCategory(@RequestBody CategoryDto categoryDto, @PathVariable int cateId){  
+    public ResponseEntity<CategoryDto> updateCategory(@Valid @RequestBody CategoryDto categoryDto, @PathVariable int cateId){  
         CategoryDto cateDto = this.cateService.updateCatDto(categoryDto, cateId);   
         return new ResponseEntity<CategoryDto>(cateDto, HttpStatus.OK);
     }
