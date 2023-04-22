@@ -3,13 +3,14 @@ package com.ajeet.blog.ajeetblog.services;
 import java.util.List;
 
 import com.ajeet.blog.ajeetblog.payloads.PostDto;
+import com.ajeet.blog.ajeetblog.payloads.PostResponse;
 
 public interface PostService {
     PostDto createPost(PostDto postDto, Integer userId, Integer categoryId);
 
     PostDto updatePostById(Integer postId, PostDto postDto);
 
-    List<PostDto> getAllPosts(Integer pageNumber, Integer pageSize);
+    PostResponse getAllPosts(Integer pageNumber, Integer pageSize, String sortBy, String sortDir);
 
     PostDto getPostById(Integer postId);
 
