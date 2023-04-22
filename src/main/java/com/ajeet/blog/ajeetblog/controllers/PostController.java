@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ajeet.blog.ajeetblog.payloads.ApiResponse;
 import com.ajeet.blog.ajeetblog.payloads.PostDto;
+import com.ajeet.blog.ajeetblog.payloads.PostResponse;
 import com.ajeet.blog.ajeetblog.services.PostService;
 
 @RestController
@@ -42,11 +43,14 @@ public class PostController {
 
 
     @GetMapping("/posts")
-    public ResponseEntity<List<PostDto>> getAllPost(@RequestParam(value="pageNumber", defaultValue = "0", required = false) Integer pageNumber,
-    @RequestParam(value="pageSize", defaultValue = "5", required = false) Integer pageSize
+    public ResponseEntity<PostResponse> getAllPost(@RequestParam(value="pageNumber", defaultValue = "0", required = false) Integer pageNumber,
+    @RequestParam(value="pageSize", defaultValue = "5", required = false) Integer pageSize,
+    @RequestParam(value="sortBy", defaultValue="postId", required = false) String sortBy,
+    @RequestParam(value="sortDir", defaultValue="asc", required = false) String sortDir
+   
     ){
-      List<PostDto> postDtos = this.postService.getAllPosts(pageNumber, pageSize);
-      return new ResponseEntity<List<PostDto>>(postDtos, HttpStatus.OK);
+      PostResponse postDtos = this.postService.getAllPosts(pageNumber, pageSize, sortBy, sortDir);
+      return new ResponseEntity<PostResponse>(postDtos, HttpStatus.OK);
     }
 
     @GetMapping("/posts/{postId}")
