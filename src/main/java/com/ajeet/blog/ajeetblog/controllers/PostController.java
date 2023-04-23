@@ -78,5 +78,19 @@ public class PostController {
       ApiResponse apiResponse = new ApiResponse("Post deleted succefully", true);
       return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.OK);
     }
+
+
+    @GetMapping("/posts/search/{keyword}")
+    public ResponseEntity<List<PostDto>> getPostByPostName(@PathVariable String keyword){
+      List<PostDto> postDtos = this.postService.findByPostNameContaining(keyword);
+      return new ResponseEntity<List<PostDto>>(postDtos, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/posts/search/content/{keyword}")
+    public ResponseEntity<List<PostDto>> getPostByPostContent(@PathVariable String keyword){
+      List<PostDto> postDtos = this.postService.findByPostContent(keyword);
+      return new ResponseEntity<List<PostDto>>(postDtos, HttpStatus.OK);
+    }
     
 }

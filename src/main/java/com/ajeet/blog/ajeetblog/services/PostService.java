@@ -20,4 +20,8 @@ public interface PostService {
 
     void deletePostById(Integer postId);
 
+    List<PostDto> findByPostNameContaining(String keyword);
+
+    List<PostDto> findByPostContent(String keyword);
+
 }

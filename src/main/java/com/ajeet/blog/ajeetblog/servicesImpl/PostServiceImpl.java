@@ -118,5 +118,21 @@ public class PostServiceImpl implements PostService {
 
         postRepo.delete(post);
     }
+
+    @Override
+    public List<PostDto> findByPostNameContaining(String keyword) {
+        List<Post> posts = postRepo.findByPostNameContaining(keyword);
+
+        List<PostDto> postDtos = posts.stream().map(post -> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
+
+        return postDtos;
+    }
+
+    @Override
+    public List<PostDto> findByPostContent(String keyword) {
+        List<Post> posts = postRepo.findByPostContent("%"+keyword+"%");
+        List<PostDto> postDtos = posts.stream().map(post -> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
+        return postDtos;
+    }
     
 }
