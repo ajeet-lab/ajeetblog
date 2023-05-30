@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ajeet.blog.ajeetblog.config.AppContants;
 import com.ajeet.blog.ajeetblog.payloads.ApiResponse;
 import com.ajeet.blog.ajeetblog.payloads.PostDto;
 import com.ajeet.blog.ajeetblog.payloads.PostResponse;
@@ -43,10 +44,10 @@ public class PostController {
 
 
     @GetMapping("/posts")
-    public ResponseEntity<PostResponse> getAllPost(@RequestParam(value="pageNumber", defaultValue = "0", required = false) Integer pageNumber,
-    @RequestParam(value="pageSize", defaultValue = "5", required = false) Integer pageSize,
-    @RequestParam(value="sortBy", defaultValue="postId", required = false) String sortBy,
-    @RequestParam(value="sortDir", defaultValue="asc", required = false) String sortDir
+    public ResponseEntity<PostResponse> getAllPost(@RequestParam(value="pageNumber", defaultValue = AppContants.PAGE_NUMBER, required = false) Integer pageNumber,
+    @RequestParam(value="pageSize", defaultValue = AppContants.PAGE_SIZE, required = false) Integer pageSize,
+    @RequestParam(value="sortBy", defaultValue=AppContants.PAGE_SORTBY, required = false) String sortBy,
+    @RequestParam(value="sortDir", defaultValue=AppContants.PAGE_SHORTDIR, required = false) String sortDir
    
     ){
       PostResponse postDtos = this.postService.getAllPosts(pageNumber, pageSize, sortBy, sortDir);

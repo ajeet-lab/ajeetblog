@@ -2,8 +2,6 @@ package com.ajeet.blog.ajeetblog.payloads;
 
 import java.util.List;
 
-import com.ajeet.blog.ajeetblog.entites.Post;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
